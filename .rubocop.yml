@@ -1,0 +1,13 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'bin/*'
+
+Metrics/LineLength:
+  Max: 128
+
+Style/Documentation:
+  Enabled: false
