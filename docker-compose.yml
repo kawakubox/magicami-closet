@@ -1,0 +1,10 @@
+postgresql:
+  image: postgres
+  volumes:
+    - ./db/data:/var/lib/postgresql/data
+  environment:
+    POSTGRES_USER: magicami
+    POSTGRES_PASSWORD: magicami
+  ports:
+    - "5432:5432"
+  container_name: magicami-db
