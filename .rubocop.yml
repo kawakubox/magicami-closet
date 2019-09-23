@@ -9,5 +9,12 @@ AllCops:
 Metrics/LineLength:
   Max: 128
 
+Metrics/MethodLength:
+  Max: 20
+
+Naming/UncommunicativeMethodParamName:
+  AllowedNames:
+    - e
+
 Style/Documentation:
   Enabled: false
