@@ -51,6 +51,7 @@ end
 
 group :test do
   gem 'faker'
+  gem 'rspec-its'
   gem 'rspec-rails'
 end
 

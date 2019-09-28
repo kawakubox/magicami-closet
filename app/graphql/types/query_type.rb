@@ -2,14 +2,26 @@
 
 module Types
   class QueryType < Types::BaseObject
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
+    field :heroine, Types::HeroineType, null: false do
+      description 'ヒロイン情報を1件返却する'
+      argument :id, Int, required: true, description: 'ID'
+    end
 
-    # TODO: remove me
-    field :test_field, String, null: false, description: 'An example field added by the generator'
+    def heroine(id:)
+      Heroine.find(id)
+    end
 
-    def test_field
-      'Hello World!'
+    field :heroines, [Types::HeroineType], null: false do
+      description 'ヒロイン情報を全件返却する'
+      argument :ids, [Int], required: false, description: 'ID配列'
+    end
+
+    def heroines(ids: nil)
+      if ids
+        Heroine.where(id: ids)
+      else
+        Heroine.all
+      end
     end
   end
 end
