@@ -6,12 +6,6 @@ create_table "dresses", force: :cascade do |t|
   t.integer "rarity", null: false, comment: "レア度"
   t.string "attribution", null: false, comment: "属性"
   t.string "style", null: false, comment: "タイプ ex) 攻撃型, 支援型 ..."
-  t.integer "hit_point", null: false, comment: "HP"
-  t.integer "attack", null: false, comment: "攻撃"
-  t.integer "defense", null: false, comment: "防御"
-  t.integer "agility", null: false, comment: "速度"
-  t.integer "dexterity", null: false, comment: "的中"
-  t.integer "resist", null: false, comment: "抵抗"
   t.datetime "created_at", precision: 6, null: false
   t.datetime "updated_at", precision: 6, null: false
   t.index ["heroine_id"], name: "index_dresses_on_heroine_id"
