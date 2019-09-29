@@ -23,5 +23,22 @@ module Types
         Heroine.all
       end
     end
+
+    field :dress, Types::DressType, null: false do
+      description 'ドレス情報を1件返却する'
+      argument :id, Int, required: true, description: 'ドレスID'
+    end
+
+    def dress(id:)
+      Dress.find(id)
+    end
+
+    field :dresses, [Types::DressType], null: false do
+      description 'ドレス情報を返却する'
+    end
+
+    def dresses
+      Dress.all
+    end
   end
 end
