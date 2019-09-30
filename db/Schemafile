@@ -1,5 +1,19 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+create_table "dress_parameters", force: :cascade do |t|
+  t.bigint "dress_id", null: false, comment: "ドレスID"
+  t.integer "level", null: false, comment: "レベル"
+  t.integer "hit_point", null: false, comment: "HP"
+  t.integer "attack", null: false, comment: "攻撃"
+  t.integer "defense", null: false, comment: "防御"
+  t.integer "agility", null: false, comment: "速度"
+  t.integer "dexterity", null: false, comment: "的中"
+  t.integer "regist", null: false, comment: "抵抗"
+  t.datetime "created_at", precision: 6, null: false
+  t.datetime "updated_at", precision: 6, null: false
+  t.index ["dress_id"], name: "index_dress_parameters_on_dress_id"
+end
+
 create_table "dresses", force: :cascade do |t|
   t.bigint "heroine_id", null: false, comment: "所有ヒロイン"
   t.string "group", null: false, comment: "種類 ex) Magica1984, Magica2019 Evo ..."
@@ -14,3 +28,5 @@ create_table "dresses", force: :cascade do |t|
   t.index ["attribution"], name: "index_dresses_on_attribution"
   t.index ["style"], name: "index_dresses_on_style"
 end
+
+add_foreign_key "dress_parameters", "dresses"
