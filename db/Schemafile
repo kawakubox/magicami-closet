@@ -11,6 +11,7 @@ create_table "dress_parameters", force: :cascade do |t|
   t.integer "regist", null: false, comment: "抵抗"
   t.datetime "created_at", precision: 6, null: false
   t.datetime "updated_at", precision: 6, null: false
+  t.index ["dress_id", "level"], name: "index_dress_parameters_on_dress_id_and_level", unique: true
   t.index ["dress_id"], name: "index_dress_parameters_on_dress_id"
 end
 
