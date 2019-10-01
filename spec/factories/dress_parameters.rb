@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :dress_parameter do
     dress
-    level { Random.rand(1..80) }
+    sequence(:level) { |i| i }
     hit_point { Random.rand(2000..10_000) }
     attack { Random.rand(200..800) }
     defense { Random.rand(200..800) }

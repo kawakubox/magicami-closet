@@ -7,5 +7,9 @@ FactoryBot.define do
     rarity { Dress.rarities.keys.sample }
     attribution { %w[火 水 雷 光 闇].sample }
     style { %w[攻撃 防御 体力 支援].sample }
+
+    after(:build) do |dress|
+      build_list(:dress_parameter, 10, dress: dress)
+    end
   end
 end
