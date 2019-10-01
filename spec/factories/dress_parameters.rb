@@ -9,6 +9,6 @@ FactoryBot.define do
     defense { Random.rand(200..800) }
     agility { Random.rand(40..100) }
     dexterity { Random.rand(20..60) }
-    regist { Random.rand(20..60) }
+    resist { Random.rand(20..60) }
   end
 end

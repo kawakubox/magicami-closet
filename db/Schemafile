@@ -8,7 +8,7 @@ create_table "dress_parameters", force: :cascade do |t|
   t.integer "defense", null: false, comment: "防御"
   t.integer "agility", null: false, comment: "速度"
   t.integer "dexterity", null: false, comment: "的中"
-  t.integer "regist", null: false, comment: "抵抗"
+  t.integer "resist", null: false, comment: "抵抗"
   t.datetime "created_at", precision: 6, null: false
   t.datetime "updated_at", precision: 6, null: false
   t.index ["dress_id", "level"], name: "index_dress_parameters_on_dress_id_and_level", unique: true
