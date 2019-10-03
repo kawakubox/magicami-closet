@@ -7,5 +7,6 @@ module Types
     field :rarity, String, null: true
     field :attribution, String, null: true
     field :style, String, null: true
+    field :dress_parameters, [Types::DressParameterType], null: false
   end
 end

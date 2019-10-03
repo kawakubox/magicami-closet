@@ -15,6 +15,15 @@ RSpec.describe Types::DressType do
             rarity
             attribution
             style
+            dressParameters {
+              level
+              hitPoint
+              attack
+              defense
+              agility
+              dexterity
+              resist
+            }
           }
         }
       GRAPHQL
@@ -30,6 +39,20 @@ RSpec.describe Types::DressType do
     its(['rarity']) { is_expected.to be_present }
     its(['attribution']) { is_expected.to be_present }
     its(['style']) { is_expected.to be_present }
+
+    describe 'dressParameter' do
+      subject do
+        result = MagicamiClosetSchema.execute(query, variables: { id: dress.id })
+        result['data']['dress']['dressParameters'].first
+      end
+
+      its(['level']) { is_expected.to be_present }
+      its(['attack']) { is_expected.to be_present }
+      its(['defense']) { is_expected.to be_present }
+      its(['agility']) { is_expected.to be_present }
+      its(['dexterity']) { is_expected.to be_present }
+      its(['resist']) { is_expected.to be_present }
+    end
   end
 
   describe 'dresses' do

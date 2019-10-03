@@ -30,7 +30,7 @@ module Types
     end
 
     def dress(id:)
-      Dress.find(id)
+      Dress.includes(:dress_parameters).find(id)
     end
 
     field :dresses, [Types::DressType], null: false do
