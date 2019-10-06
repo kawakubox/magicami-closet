@@ -33,11 +33,15 @@ rarity = proc do |field, field_info|
   end
 end
 
-con = ActiveRecord::Base.connection
-con.execute('DELETE FROM dress_parameters')
-con.execute("SELECT setval ('dress_parameters_id_seq', 1, false)")
-con.execute('DELETE FROM dresses')
-con.execute("SELECT setval ('dresses_id_seq', 1, false)")
+def reset_tables
+  con = ActiveRecord::Base.connection
+  con.execute('DELETE FROM dress_parameters')
+  con.execute("SELECT setval ('dress_parameters_id_seq', 1, false)")
+  con.execute('DELETE FROM dresses')
+  con.execute("SELECT setval ('dresses_id_seq', 1, false)")
+end
+
+reset_tables
 
 csv = CSV.read('db/fixtures/dresses.tsv',
                col_sep: "\t",
