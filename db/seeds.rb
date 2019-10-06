@@ -41,6 +41,16 @@ def reset_tables
   con.execute("SELECT setval ('dresses_id_seq', 1, false)")
 end
 
+def dress_param(row)
+  {
+    heroine: Heroine.find_by(first_name: row[:heroine_name]),
+    group: row[:group],
+    rarity: row[:rarity],
+    attribution: row[:attribution],
+    style: row[:style],
+  }
+end
+
 reset_tables
 
 csv = CSV.read('db/fixtures/dresses.tsv',
@@ -50,11 +60,7 @@ csv = CSV.read('db/fixtures/dresses.tsv',
                converters: [rarity])
 
 csv.each do |row|
-  dress = Dress.create!(heroine: Heroine.find_by(first_name: row[:heroine_name]),
-                        group: row[:group],
-                        rarity: row[:rarity],
-                        attribution: row[:attribution],
-                        style: row[:style])
+  dress = Dress.create!(dress_param(row))
 
   DressParameter.create!(dress: dress,
                          level: row[:level],
