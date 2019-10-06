@@ -53,6 +53,7 @@ group :test do
   gem 'faker'
   gem 'rspec-its'
   gem 'rspec-rails'
+  gem 'validation_examples_matcher'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
