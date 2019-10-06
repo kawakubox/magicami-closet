@@ -18,21 +18,6 @@ HEADER_DICT = {
   '抵抗': :resist
 }.freeze.with_indifferent_access
 
-RARITY_DICT = {
-  'UR': :ultra_rare,
-  'SR': :super_rare,
-  'R': :rare,
-  'N': :normal
-}.freeze.with_indifferent_access
-
-rarity = proc do |field, field_info|
-  if field_info.header == :rarity
-    RARITY_DICT[field]
-  else
-    field
-  end
-end
-
 def reset_tables
   con = ActiveRecord::Base.connection
   con.execute('DELETE FROM dress_parameters')
@@ -68,8 +53,7 @@ reset_tables
 csv = CSV.read('db/fixtures/dresses.tsv',
                col_sep: "\t",
                headers: :first_row,
-               header_converters: ->(h) { HEADER_DICT[h] },
-               converters: [rarity])
+               header_converters: ->(h) { HEADER_DICT[h] })
 
 csv.each do |row|
   dress = Dress.create!(dress_param(row))

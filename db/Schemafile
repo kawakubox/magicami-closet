@@ -18,7 +18,7 @@ end
 create_table "dresses", force: :cascade do |t|
   t.bigint "heroine_id", null: false, comment: "所有ヒロイン"
   t.string "group", null: false, comment: "種類 ex) Magica1984, Magica2019 Evo ..."
-  t.integer "rarity", null: false, comment: "レア度"
+  t.string "rarity", null: false, comment: "レア度"
   t.string "attribution", null: false, comment: "属性"
   t.string "style", null: false, comment: "タイプ ex) 攻撃型, 支援型 ..."
   t.datetime "created_at", precision: 6, null: false
