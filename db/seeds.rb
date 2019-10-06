@@ -51,6 +51,18 @@ def dress_param(row)
   }
 end
 
+def dress_parameter_param(row)
+  {
+    level: row[:level],
+    hit_point: row[:hit_point],
+    attack: row[:attack],
+    defense: row[:defense],
+    agility: row[:agility],
+    dexterity: row[:dexterity],
+    resist: row[:resist],
+  }
+end
+
 reset_tables
 
 csv = CSV.read('db/fixtures/dresses.tsv',
@@ -61,13 +73,5 @@ csv = CSV.read('db/fixtures/dresses.tsv',
 
 csv.each do |row|
   dress = Dress.create!(dress_param(row))
-
-  DressParameter.create!(dress: dress,
-                         level: row[:level],
-                         hit_point: row[:hit_point],
-                         attack: row[:attack],
-                         defense: row[:defense],
-                         agility: row[:agility],
-                         dexterity: row[:dexterity],
-                         resist: row[:resist])
+  DressParameter.create!(dress: dress, **dress_parameter_param(row))
 end
