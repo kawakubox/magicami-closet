@@ -30,4 +30,16 @@ create_table "dresses", force: :cascade do |t|
   t.index ["style"], name: "index_dresses_on_style"
 end
 
+create_table "skills", force: :cascade do |t|
+  t.bigint "dress_id", null: false
+  t.integer "number", null: false, limit: 1
+  t.string "name", null: false, limit: 16
+  t.integer "max_level", null: false, limit: 1
+  t.string "description", null: false
+  t.datetime "created_at", precision: 6, null: false
+  t.datetime "updated_at", precision: 6, null: false
+  t.index ["dress_id"], name: "index_skills_on_dress_id"
+end
+
 add_foreign_key "dress_parameters", "dresses"
+add_foreign_key "skills", "dresses"

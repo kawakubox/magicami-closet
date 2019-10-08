@@ -14,4 +14,5 @@ RSpec.describe Dress, type: :model do
 
   it { expect(dress).to be_respond_to(:heroine) }
   it { expect(dress).to be_respond_to(:dress_parameters) }
+  it { expect(dress).to be_respond_to(:skills) }
 end
