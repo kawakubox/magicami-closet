@@ -19,3 +19,6 @@ Naming/UncommunicativeMethodParamName:
 
 Style/Documentation:
   Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
