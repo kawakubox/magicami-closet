@@ -24,6 +24,12 @@ RSpec.describe Types::DressType do
               dexterity
               resist
             }
+            skills {
+              number
+              name
+              maxLevel
+              description
+            }
           }
         }
       GRAPHQL
@@ -52,6 +58,18 @@ RSpec.describe Types::DressType do
       its(['agility']) { is_expected.to be_present }
       its(['dexterity']) { is_expected.to be_present }
       its(['resist']) { is_expected.to be_present }
+    end
+
+    describe 'skill' do
+      subject do
+        result = MagicamiClosetSchema.execute(query, variables: { id: dress.id })
+        result['data']['dress']['skills'].first
+      end
+
+      its(['number']) { is_expected.to be_present }
+      its(['name']) { is_expected.to be_present }
+      its(['maxLevel']) { is_expected.to be_present }
+      its(['description']) { is_expected.to be_present }
     end
   end
 

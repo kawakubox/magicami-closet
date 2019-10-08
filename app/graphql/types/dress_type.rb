@@ -8,5 +8,6 @@ module Types
     field :attribution, String, null: true
     field :style, String, null: true
     field :dress_parameters, [Types::DressParameterType], null: false
+    field :skills, [Types::SkillType], null: false
   end
 end
