@@ -7,4 +7,6 @@ class Skill < ApplicationRecord
   validates :number, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 3, only_integer: true },
                      uniqueness: { scope: %i[dress_id name] }
   validates :max_level, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 9, only_integer: true }
+
+  has_many :skill_variables, dependent: :delete_all
 end

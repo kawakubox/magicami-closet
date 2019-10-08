@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe Skill, type: :model do
   let(:skill) { build(:skill) }
 
+  it { expect(skill).to be_respond_to(:skill_variables) }
+
   describe 'validation' do
     subject { skill }
 
