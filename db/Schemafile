@@ -17,16 +17,16 @@ end
 
 create_table "dresses", force: :cascade do |t|
   t.bigint "heroine_id", null: false, comment: "所有ヒロイン"
-  t.string "group", null: false, limit: 32, comment: "種類 ex) Magica1984, Magica2019 Evo ..."
-  t.string "rarity", null: false, limit: 2, comment: "レア度"
-  t.string "attribution", null: false, limit: 1, comment: "属性"
-  t.string "style", null: false, limit: 3, comment: "タイプ ex) 攻撃型, 支援型 ..."
+  t.string "group", limit: 32, null: false, comment: "種類 ex) Magica1984, Magica2019 Evo ..."
+  t.string "rarity", limit: 2, null: false, comment: "レア度"
+  t.string "attribution", limit: 1, null: false, comment: "属性"
+  t.string "style", limit: 3, null: false, comment: "タイプ ex) 攻撃型, 支援型 ..."
   t.datetime "created_at", precision: 6, null: false
   t.datetime "updated_at", precision: 6, null: false
-  t.index ["heroine_id"], name: "index_dresses_on_heroine_id"
-  t.index ["group"], name: "index_dresses_on_group"
-  t.index ["rarity"], name: "index_dresses_on_rarity"
   t.index ["attribution"], name: "index_dresses_on_attribution"
+  t.index ["group"], name: "index_dresses_on_group"
+  t.index ["heroine_id"], name: "index_dresses_on_heroine_id"
+  t.index ["rarity"], name: "index_dresses_on_rarity"
   t.index ["style"], name: "index_dresses_on_style"
 end
 
