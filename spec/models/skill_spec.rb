@@ -19,13 +19,15 @@ RSpec.describe Skill, type: :model do
     it { is_expected.to be_invalid_on(:max_level).with(10) }
 
     describe 'Unique Constraint' do
-      let(:dresses) { create_list(:dress, 2) }
-      before { create(:skill, dress: dresses[0], name: 'スキル') }
-      subject { build(:skill, dress: dresses[0], name: 'スキル') }
       it do
-        is_expected.to be_invalid
-        subject.dress_id = dresses[1].id
-        is_expected.to be_valid
+        dress_1 = create(:dress)
+        create(:skill, dress: dress_1, number: 1)
+        skill_1 = build(:skill, dress: dress_1, number: 1)
+        expect(skill_1).to be_invalid
+
+        dress_2 = create(:dress)
+        skill_2 = build(:skill, dress: dress_2, number: 1)
+        expect(skill_2).to be_valid
       end
     end
   end
