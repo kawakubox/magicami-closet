@@ -32,8 +32,8 @@ end
 
 create_table "skill_variables", force: :cascade do |t|
   t.bigint "skill_id", null: false
-  t.integer "level", limit: 1, null: false
-  t.integer "recast", limit: 1, null: false
+  t.integer "level", limit: 2, null: false
+  t.integer "recast", limit: 2, null: false
   t.integer "damage", limit: 2, null: false
   t.integer "value_1", limit: 2, null: false
   t.datetime "created_at", precision: 6, null: false
@@ -43,9 +43,9 @@ end
 
 create_table "skills", force: :cascade do |t|
   t.bigint "dress_id", null: false
-  t.integer "number", null: false, limit: 1
-  t.string "name", null: false, limit: 16
-  t.integer "max_level", null: false, limit: 1
+  t.integer "number", limit: 2, null: false
+  t.string "name", limit: 32, null: false
+  t.integer "max_level", limit: 2, null: false
   t.string "description", null: false
   t.datetime "created_at", precision: 6, null: false
   t.datetime "updated_at", precision: 6, null: false
