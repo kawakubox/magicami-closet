@@ -27,7 +27,7 @@ HEADER_DICT = {
   'スキル名_3': :skill_name_3,
   'スキル最大レベル_3': :skill_max_level_3,
   'スキルリキャスト_3': :skill_recast_3,
-  'スキル説明_3': :skill_description_3
+  'スキル説明_3': :skill_description_3,
 }.with_indifferent_access
 
 def reset_tables
