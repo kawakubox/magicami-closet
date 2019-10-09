@@ -2,7 +2,7 @@
 
 RSpec.describe Types::DressType do
   describe 'dress' do
-    let!(:dress) { create(:dress) }
+    let!(:dress) { create(:dress, :with_skills) }
     let(:query) do
       <<-GRAPHQL
         query($id: Int!) {

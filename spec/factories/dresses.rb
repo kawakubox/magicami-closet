@@ -10,7 +10,12 @@ FactoryBot.define do
 
     after(:build) do |dress|
       dress.dress_parameters << build_list(:dress_parameter, 10, dress: dress)
-      dress.skills << (1..3).map { |i| build(:skill, dress: dress, number: i) }
+    end
+
+    trait :with_skills do
+      after(:build) do |dress|
+        dress.skills << (1..3).map { |i| build(:skill, dress: dress, number: i) }
+      end
     end
   end
 end
