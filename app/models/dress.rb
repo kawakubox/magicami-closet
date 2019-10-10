@@ -11,4 +11,8 @@ class Dress < ApplicationRecord
   validates :group, length: { maximum: 32 }
   validates :rarity, length: { maximum: 2 }
   validates :style, length: { maximum: 3 }
+
+  def name
+    "#{group} #{heroine.first_name}"
+  end
 end
