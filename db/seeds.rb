@@ -71,23 +71,64 @@ class DressImporter
   end
 end
 
+class SkillImporter
+  HEADER_DICT = {
+    'ドレス名': :dress_name,
+    'スキル番号': :number,
+    'スキル名': :name,
+    '説明': :description,
+    'レベル': :level,
+    'リキャスト': :recast,
+    'ダメージ': :damage,
+    '変数': :vars,
+  }.with_indifferent_access
+
+  def import
+    csv = CSV.read('db/fixtures/skills.tsv',
+                   col_sep: "\t",
+                   headers: :first_row,
+                   header_converters: ->(h) { HEADER_DICT[h] })
+
+    dresses = Dress.all
+
+    csv.each do |row|
+      dress = dresses.select { |d| d.name == row[:dress_name] }.first
+      skill = Skill.find_by(dress: dress, number: row[:number])
+      SkillVariable.create!(skill: skill, **skill_variable_param(row))
+    end
+  end
+
+  private
+
+  def skill_param(row, index)
+    {
+      number: index,
+      name: row["skill_name_#{index}".to_sym],
+      max_level: row["skill_max_level_#{index}".to_sym],
+      description: row["skill_description_#{index}".to_sym],
+    }
+  end
+
+  def skill_variable_param(row)
+    {
+      level: row[:level],
+      recast: row[:recast].to_i,
+      damage: row[:damage],
+      vars: row[:vars],
+    }
+  end
+end
+
 def reset_tables
   Dress.destroy_all
   con = ActiveRecord::Base.connection
+  con.execute("SELECT setval ('skill_variables_id_seq', 1, false)")
   con.execute("SELECT setval ('dress_parameters_id_seq', 1, false)")
   con.execute("SELECT setval ('skills_id_seq', 1, false)")
   con.execute("SELECT setval ('dresses_id_seq', 1, false)")
 end
 
-def skill_param(row, index)
-  {
-    number: index,
-    name: row["skill_name_#{index}".to_sym],
-    max_level: row["skill_max_level_#{index}".to_sym],
-    description: row["skill_description_#{index}".to_sym],
-  }
-end
-
 reset_tables
 
 DressImporter.new.import
+SkillImporter.new.import
