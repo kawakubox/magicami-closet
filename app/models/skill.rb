@@ -8,5 +8,5 @@ class Skill < ApplicationRecord
                      uniqueness: { scope: %i[dress_id] }
   validates :max_level, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 9, only_integer: true }
 
-  has_many :skill_variables, dependent: :delete_all
+  has_many :skill_variables, dependent: :destroy
 end

@@ -4,8 +4,8 @@ class Dress < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   belongs_to :heroine
-  has_many :dress_parameters, dependent: :delete_all
-  has_many :skills, dependent: :delete_all
+  has_many :dress_parameters, dependent: :destroy
+  has_many :skills, dependent: :destroy
 
   validates :attribution, length: { maximum: 1 }
   validates :group, length: { maximum: 32 }
