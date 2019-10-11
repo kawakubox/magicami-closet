@@ -6,6 +6,6 @@ FactoryBot.define do
     level { Random.rand(1..7) }
     recast { Random.rand(0..6) }
     damage { Random.rand(100..150) }
-    value_1 { Random.rand(10..50) }
+    vars { [Random.rand(10..50), Random.rand(10..50)].join(',') }
   end
 end

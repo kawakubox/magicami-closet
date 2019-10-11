@@ -21,9 +21,5 @@ RSpec.describe SkillVariable, type: :model do
     it { is_expected.to be_valid_on(:damage).with(0) }
     it { is_expected.to be_valid_on(:damage).with(200) }
     it { is_expected.to be_invalid_on(:damage).with(201) }
-    it { is_expected.to be_invalid_on(:value_1).with(-1) }
-    it { is_expected.to be_valid_on(:value_1).with(0) }
-    it { is_expected.to be_valid_on(:value_1).with(200) }
-    it { is_expected.to be_invalid_on(:value_1).with(201) }
   end
 end

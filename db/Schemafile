@@ -35,7 +35,7 @@ create_table "skill_variables", force: :cascade do |t|
   t.integer "level", limit: 2, null: false
   t.integer "recast", limit: 2, null: false
   t.integer "damage", limit: 2, null: false
-  t.integer "value_1", limit: 2, null: false
+  t.string "vars"
   t.datetime "created_at", precision: 6, null: false
   t.datetime "updated_at", precision: 6, null: false
   t.index ["skill_id"], name: "index_skill_variables_on_skill_id"
