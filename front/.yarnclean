@@ -43,3 +43,6 @@ wercker.yml
 
 # misc
 *.md
+
+# [Ref] https://github.com/DefinitelyTyped/DefinitelyTyped/issues/33311
+@types/react-native
