@@ -1,7 +1,18 @@
 import * as React from "react";
 import Row from "react-bootstrap/Row";
 
-class Content extends React.Component {
+interface Props {
+  dresses: Dress[]
+}
+
+export interface Dress {
+  group: string,
+  attribution: string,
+  rarity: string,
+  style: string
+}
+
+class Content extends React.Component<Props> {
   public render() {
     return (
       <>
@@ -9,7 +20,17 @@ class Content extends React.Component {
           FilterBox
         </Row>
         <Row>
-          Showcase
+          <div>
+            {
+              this.props.dresses.map((dress: Dress, index: number) => {
+                return (
+                  <div key={index}>
+                    {`${dress.rarity} | ${dress.group} | ${dress.attribution} | ${dress.style}`}
+                  </div>
+                );
+              })
+            }
+          </div>
         </Row>
       </>
     );

@@ -1,7 +1,7 @@
 import * as React from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Content from "./Content";
+import Content, {Dress} from "./Content";
 import SideMenu from "./SideMenu";
 
 class Body extends React.Component {
@@ -12,7 +12,7 @@ class Body extends React.Component {
           <SideMenu />
         </Col>
         <Col xs="10">
-          <Content />
+          <Content dresses={testDresses()} />
         </Col>
       </Row>
     );
@@ -20,3 +20,15 @@ class Body extends React.Component {
 }
 
 export default Body;
+
+function testDresses(): Dress[] {
+  const dresses = [
+    {
+      attribution: "火",
+      group: "Magica2019",
+      rarity: "SR",
+      style: "体力"
+    }
+  ];
+  return dresses;
+}
