@@ -4,17 +4,19 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
-  host: 127.0.0.1
   port: 5432
 
 development:
   <<: *default
+  host: 127.0.0.1
   database: magicami_closet_development
 
 test:
   <<: *default
+  host: 127.0.0.1
   database: magicami_closet_test
 
 production:
   <<: *default
-  database: magicami_closet_production
+  host: <%= ENV['DB_HOST'] %>
+  database: <%= ENV['DB_NAME'] %>
