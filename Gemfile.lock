@@ -235,7 +235,7 @@ DEPENDENCIES
   validation_examples_matcher
 
 RUBY VERSION
-   ruby 2.6.4p104
+   ruby 2.7.0p0
 
 BUNDLED WITH
-   1.17.2
+   2.1.2
