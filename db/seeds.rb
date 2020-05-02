@@ -71,6 +71,21 @@ class DressImporter
   end
 end
 
+class SeriesImporter
+  HEADER_DICT = {
+    'シリーズ名': :name
+  }.with_indifferent_access
+
+  def import
+    csv = CSV.read('db/fixtures/series.tsv',
+                   col_sep: "\t",
+                   headers: :first_row,
+                   header_converters: ->(h) { HEADER_DICT[h] })
+
+    Series.insert_all!(csv.map(&:to_h))
+  end
+end
+
 class SkillImporter
   HEADER_DICT = {
     'ドレス名': :dress_name,
@@ -120,8 +135,10 @@ class SkillImporter
 end
 
 def reset_tables
+  Series.destroy_all
   Dress.destroy_all
   con = ActiveRecord::Base.connection
+  con.execute("SELECT setval ('series_id_seq', 1, false)")
   con.execute("SELECT setval ('skill_variables_id_seq', 1, false)")
   con.execute("SELECT setval ('dress_parameters_id_seq', 1, false)")
   con.execute("SELECT setval ('skills_id_seq', 1, false)")
@@ -132,3 +149,4 @@ reset_tables
 
 DressImporter.new.import
 SkillImporter.new.import
+SeriesImporter.new.import
